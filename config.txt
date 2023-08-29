@@ -1,0 +1,4 @@
+[server]
+linuxpath = C:\Users\njuej\OneDrive\Desktop\mytest\200k.txt
+REREAD_ON_QUERY = True
+SSL_ENABLED = False

@@ -1,0 +1,70 @@
+======================================================================
+                    SERVER SCRIPT DOCUMENTATION
+======================================================================
+
+1. Introduction:
+----------------
+This script implements a server that listens for incoming connections and handles client requests. It allows clients to send a string query, and the server searches for the string in a specified file. The server responds to the client with whether the string exists in the file or not.
+
+The script supports robust exception handling, error messages, and unit tests for different scenarios.
+
+2. Dependencies:
+----------------
+The script requires the following dependencies:
+- Python 3.x
+
+3. Configuration:
+-----------------
+The server can be configured using the following variables:
+
+- SERVER_HOST: The host IP address or hostname on which the server listens for connections.
+- SERVER_PORT: The port on which the server listens for connections.
+- CONFIG_FILE_PATH: The path to the configuration file that contains the file path and other options.
+- REREAD_ON_QUERY: A boolean value (True or False) indicating whether to reread the file on each query.
+- MAX_PAYLOAD_SIZE: The maximum size of the payload (in bytes) that the server can receive from the client.
+- DEBUG_MODE: A boolean value (True or False) indicating whether to enable debug mode.
+- SSL_ENABLED: A boolean value (True or False) indicating whether to enable SSL/TLS encryption.
+- SSL_CERTIFICATE: The path to the SSL certificate file.
+- SSL_KEY: The path to the private key file for SSL/TLS encryption.
+
+4. Functionality:
+-----------------
+- The script creates a TCP/IP socket and binds it to the specified host and port.
+- It listens for incoming connections and accepts client connections.
+- For each client connection, a new thread is started to handle the client request concurrently.
+- The handle_client function reads the client's query, searches for the string in the file, and sends the result back to the client.
+- The server can handle multiple client connections simultaneously using threading and socket select.
+- Debug information is logged if the DEBUG_MODE variable is set to True.
+- SSL/TLS encryption can be enabled by providing the SSL certificate and private key files.
+
+5. Usage:
+----------
+- Set the configuration variables at the beginning of the script according to your requirements.
+- Ensure that the specified configuration file exists and contains the necessary information.
+- Run the script using Python 3.x: `python mytest.py`.
+- The server will start listening on the specified host and port.
+- Clients can connect to the server and send string queries to search in the file.
+
+6. Error Handling:
+-------------------
+The script implements robust exception handling to handle various error scenarios, including:
+- Client disconnection
+- Invalid data received
+- File or configuration errors
+- Thread handling errors
+
+7. Testing:
+-----------
+The script can be tested using unit tests to ensure its functionality and performance in different scenarios. The following tests are recommended:
+
+- Test with different file sizes: Generate files with sizes ranging from 10,000 to 1,000,000 and measure the execution times for different queries.
+- Test with high query rates: Increase the number of client connections and the rate of queries per second to observe the server's limitations.
+- Test with different file contents: Create files with different string patterns and test the server's accuracy in detecting the presence of strings.
+
+8. Limitations:
+---------------
+- The script assumes that the configuration file is correctly formatted and contains the necessary information. Proper error handling should be added if the file is missing or has incorrect content.
+- The script handles multiple client connections using threading, which may have limitations based on system resources.
+- The server's performance may be affected by the size of the file being searched and the rate of incoming queries.
+
+======================================================================
